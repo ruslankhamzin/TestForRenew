@@ -81,12 +81,61 @@ public class FileService {
             long finish = System.currentTimeMillis();
             setNeedTime(finish - start);
 
-            airports.sort(Comparator.comparing(Airport::getName));
+            Sort(airports);
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
         } catch (IOException e) {
             System.out.println("Ошибка ввода-вывода");
         }
+
+    }
+
+    public void Sort(List<Airport> airports) {
+        switch (value) {
+            case 1:
+                airports.sort(Comparator.comparing(Airport::getId));
+                break;
+            case 2:
+                airports.sort(Comparator.comparing(Airport::getName));
+                break;
+            case 3:
+                airports.sort(Comparator.comparing(Airport::getCity));
+                break;
+            case 4:
+                airports.sort(Comparator.comparing(Airport::getCountry));
+                break;
+            case 5:
+                airports.sort(Comparator.comparing(Airport::getIATA));
+                break;
+            case 6:
+                airports.sort(Comparator.comparing(Airport::getICAO));
+                break;
+            case 7:
+                airports.sort(Comparator.comparing(Airport::getLatitude));
+                break;
+            case 8:
+                airports.sort(Comparator.comparing(Airport::getLongitude));
+                break;
+            case 9:
+                airports.sort(Comparator.comparing(Airport::getAltitude));
+                break;
+            case 10:
+                airports.sort(Comparator.comparing(Airport::getTimeZone));
+                break;
+            case 11:
+                airports.sort(Comparator.comparing(Airport::getDST));
+                break;
+            case 12:
+                airports.sort(Comparator.comparing(Airport::getTz));
+                break;
+            case 13:
+                airports.sort(Comparator.comparing(Airport::getType));
+                break;
+            case 14:
+                airports.sort(Comparator.comparing(Airport::getSource));
+                break;
+        }
+
 
     }
 }
