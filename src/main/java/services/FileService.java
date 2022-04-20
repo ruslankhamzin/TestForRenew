@@ -7,17 +7,52 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class FileService {
-    private final List<Airport> airports = new ArrayList<>();
+    private static final List<Airport> airports = new ArrayList<>();
     private String filename;
+    private static long NeedTime;
+    private static int count = 0;
+    private int value;
+
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        FileService.count = count;
+    }
+
+
+    public FileService(String filename, int value) {
+        this.filename = filename;
+        this.value = value;
+    }
+
+    public static long getNeedTime() {
+        return NeedTime;
+    }
+
+    public static void setNeedTime(long needTime) {
+        NeedTime = needTime;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     public FileService(String filename) {
         this.filename = filename;
     }
 
-    public List<Airport> getAirports() {
+    public static List<Airport> getAirports() {
         return airports;
     }
 
@@ -29,35 +64,28 @@ public class FileService {
         this.filename = filename;
     }
 
-    public void Search(){
-        String line="";
+    public void Search(String reg) {
+        String line;
         try {
             BufferedReader br = new BufferedReader(new FileReader(this.filename));
-            while ((line=br.readLine())!=null){
+            long start = System.currentTimeMillis();
+            while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                Airport airport = new Airport();
-                airport.setId(values[0]);
-                airport.setName(values[1]);
-                airport.setCity(values[2]);
-                airport.setCountry(values[3]);
-                airport.setIATA(values[4]);
-                airport.setICAO(values[5]);
-                airport.setLatitude(values[6]);
-                airport.setLongitude(values[7]);
-                airport.setAltitude(values[8]);
-                airport.setTimeZone(values[9]);
-                airport.setDST(values[10]);
-                airport.setTz(values[11]);
-                airport.setType(values[12]);
-                airport.setSource(values[13]);
-                System.out.println(airport.getId()+" "+airport.getCity());
-                airports.add(airport);
+                if (values[value - 1].startsWith(reg) || values[value - 1].startsWith('"' + reg)) {
+                    count++;
+                    airports.add(new Airport(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10], values[11], values[12], values[13]));
+                }
+
 
             }
+            long finish = System.currentTimeMillis();
+            setNeedTime(finish - start);
+
+            airports.sort(Comparator.comparing(Airport::getName));
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Ошибка ввода-вывода");
         }
 
     }

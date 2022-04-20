@@ -1,12 +1,16 @@
-import models.Airport;
-import services.FileService;
+import services.InputService;
+import services.OutputService;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
-    public static void main(String[] args){
-       FileService fs = new FileService("airports.csv");
-       fs.Search();
+    public static void main(String[] args) {
+        OutputService.RequestParam();
+        InputService inputService = new InputService();
+        inputService.CheckValue();
+        OutputService.RequestString();
+        inputService.SearchAirports();
+        OutputService.PrintAirports();
+        OutputService.PrintFinds();
+        OutputService.PrintTime();
     }
 }

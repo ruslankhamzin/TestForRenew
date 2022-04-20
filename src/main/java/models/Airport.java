@@ -1,6 +1,5 @@
 package models;
 
-import lombok.Value;
 
 public class Airport {
 
@@ -19,6 +18,12 @@ public class Airport {
     private String tz;
     private String type;
     private String source;
+
+    @Override
+    public String toString() {
+        return name + " " + city + " " + country + " " + IATA + " " + ICAO + " " + latitude + " " + longitude + " " + altitude + " "
+                + timeZone + " " + DST + " " + tz + " " + type + " " + source;
+    }
 
     public Airport() {
     }
