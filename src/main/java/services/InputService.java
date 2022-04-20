@@ -7,10 +7,8 @@ public class InputService {
 
     private int value;
 
-
     public InputService() {
     }
-
 
     public int getValue() {
         return value;
@@ -52,13 +50,11 @@ public class InputService {
             } else {
                 this.value = defaultValue;
             }
-
         } catch (FileNotFoundException e) {
             System.out.println("Файл конфигурации не найден");
         } catch (IOException e) {
             System.out.println("Ошибка ввода-вывода");
         }
-
     }
 
     public void SearchAirports() {
@@ -71,6 +67,5 @@ public class InputService {
         }
         FileService fs = new FileService("airports.csv", value);
         fs.Search(reg);
-
     }
 }

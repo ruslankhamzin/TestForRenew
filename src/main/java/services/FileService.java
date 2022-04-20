@@ -17,7 +17,6 @@ public class FileService {
     private static int count = 0;
     private int value;
 
-
     public static int getCount() {
         return count;
     }
@@ -25,7 +24,6 @@ public class FileService {
     public static void setCount(int count) {
         FileService.count = count;
     }
-
 
     public FileService(String filename, int value) {
         this.filename = filename;
@@ -75,12 +73,9 @@ public class FileService {
                     count++;
                     airports.add(new Airport(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7], values[8], values[9], values[10], values[11], values[12], values[13]));
                 }
-
-
             }
             long finish = System.currentTimeMillis();
             setNeedTime(finish - start);
-
             Sort(airports);
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден");

@@ -21,6 +21,6 @@ public class OutputService {
     }
 
     public static void PrintTime() {
-        System.out.println("Время, затраченное на поиск: " + FileService.getNeedTime() + ",мс");
+        System.out.println("Время, затраченное на поиск: " + FileService.getNeedTime() + "мс");
     }
 }

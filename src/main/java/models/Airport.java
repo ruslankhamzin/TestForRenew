@@ -19,11 +19,7 @@ public class Airport {
     private String type;
     private String source;
 
-    @Override
-    public String toString() {
-        return name + " " + city + " " + country + " " + IATA + " " + ICAO + " " + latitude + " " + longitude + " " + altitude + " "
-                + timeZone + " " + DST + " " + tz + " " + type + " " + source;
-    }
+
 
     public Airport() {
     }
@@ -155,5 +151,10 @@ public class Airport {
         this.tz = tz;
         this.type = type;
         this.source = source;
+    }
+    @Override
+    public String toString() {
+        return name + " " + city + " " + country + " " + IATA + " " + ICAO + " " + latitude + " " + longitude + " " + altitude + " "
+                + timeZone + " " + DST + " " + tz + " " + type + " " + source;
     }
 }
